@@ -1,13 +1,9 @@
-openai>=1.0.0
-tiktoken
-arxiv
-PyMuPDF
-langchain
-langchain-community
-langchain-openai
-tiktoken>=0.5.1
-streamlit
-python-dotenv
-faiss-cpu
-tqdm
-pypdf
+streamlit>=1.33.0
+langchain>=0.2.0
+langchain-community>=0.2.0
+huggingface_hub>=0.23.0
+sentence-transformers>=2.6.1         # local embeddings
+faiss-cpu>=1.8
+pymupdf==1.24.1                      # (= fitz) for PDF parsing
+tqdm                                 # progress bars
+
