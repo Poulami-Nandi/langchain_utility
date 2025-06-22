@@ -137,9 +137,13 @@ App goes live in ~30 seconds 🎉
 
 ## 🙋 About
 
-Built with ❤️ by Poulami Nandi  
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-PoulamiNandi-blue)](https://www.linkedin.com/in/poulami-nandi-a8a12917b/)  
-[![GitHub](https://img.shields.io/badge/GitHub-PoulamiNandi-black)](https://github.com/Poulami-Nandi)
+**Author**: [Dr. Poulami Nandi](https://www.linkedin.com/in/poulami-nandi/)  
+<img src="https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/own/own_image.jpg" alt="Profile" width="150"/>  
+Physicist · Quant Researcher · Data Scientist  
+[University of Pennsylvania](https://live-sas-physics.pantheon.sas.upenn.edu/people/poulami-nandi) | [IIT Kanpur](https://www.iitk.ac.in/) | [TU Wien](http://www.itp.tuwien.ac.at/CPT/index.htm?date=201838&cats=xbrbknmztwd)
+
+📧 [nandi.poulami91@gmail.com](mailto:nandi.poulami91@gmail.com), [pnandi@sas.upenn.edu](mailto:pnandi@sas.upenn.edu)  
+🔗 [LinkedIn](https://www.linkedin.com/in/poulami-nandi-a8a12917b/) • [GitHub](https://github.com/Poulami-Nandi) • [Google Scholar](https://scholar.google.co.in/citations?user=bOYJeAYAAAAJ&hl=en)  
 
 ---
 
