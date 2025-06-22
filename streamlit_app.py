@@ -15,6 +15,9 @@ Prerequisites
 import os
 import tempfile
 import streamlit as st
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain_community.chat_models import ChatOpenAI
 
 # ――― Internal utility wrappers ――― #
 from src.loader import pdf_to_text, fetch_arxiv     #  ➜ text extraction helpers
