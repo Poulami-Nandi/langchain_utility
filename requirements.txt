@@ -1,0 +1,9 @@
+arxiv
+PyMuPDF
+openai
+langchain
+streamlit
+python-dotenv
+faiss-cpu
+tqdm
+pypdf
