@@ -8,6 +8,7 @@ from langchain.chains import RetrievalQA
 EMBED_MODEL   = "sentence-transformers/all-MiniLM-L6-v2"
 CHAT_MODEL_ID = "mistralai/Mistral-7B-Instruct-v0.3"
 #CHAT_MODEL_ID = "HuggingFaceH4/zephyr-7b-alpha"
+from langchain_community.llms import HuggingFaceHub
 
 def build_chain(paper_text: str):
     # 1. Split paper into chunks
@@ -22,9 +23,10 @@ def build_chain(paper_text: str):
     # 3. Use HuggingFaceHub wrapper (not HuggingFaceEndpoint!)
     llm = HuggingFaceHub(
         repo_id=CHAT_MODEL_ID,
+        huggingfacehub_api_token=os.environ["HUGGINGFACEHUB_API_TOKEN"],
         model_kwargs={
             "temperature": 0.1,
-            "max_new_tokens": 512
+            "max_new_tokens": 512,
         }
     )
 
