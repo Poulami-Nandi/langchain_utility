@@ -3,9 +3,11 @@ tiktoken
 arxiv
 PyMuPDF
 langchain
+langchain-community
+langchain-openai
+tiktoken>=0.5.1
 streamlit
 python-dotenv
 faiss-cpu
 tqdm
 pypdf
-langchain-community
