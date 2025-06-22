@@ -12,6 +12,9 @@ The app builds an in-memory FAISS index with sentence-transformer embeddings and
 uses the free **Mistral-7B-Instruct** endpoint on Hugging Face to answer questions.
 """)
 
+import os
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = st.secrets["HUGGINGFACEHUB_API_TOKEN"]
+
 # ---------- SIDEBAR: Hugging Face token (optional) ----------
 with st.sidebar:
     st.header("🔑 Hugging Face token (optional)")
