@@ -19,6 +19,7 @@ import streamlit as st
 # ――― Internal utility wrappers ――― #
 from src.loader import pdf_to_text, fetch_arxiv     #  ➜ text extraction helpers
 from src.qa_chain import build_chain                #  ➜ LangChain pipeline
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 # -------------------------------------------------------------------------- #
 # Page set-up
