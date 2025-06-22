@@ -1,8 +1,0 @@
-streamlit>=1.34
-openai>=1.30             # or anthropic / google-generativeai
-langchain>=0.2.1
-pymupdf                   # fast PDF parsing
-arxiv>=2.1
-faiss-cpu                 # vector store
-tiktoken
-python-dotenv             # local key loading
