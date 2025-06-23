@@ -1,9 +1,9 @@
+PyMuPDF==1.23.7
 streamlit>=1.33.0
 langchain>=0.2.0
 langchain-community>=0.2.0
 huggingface_hub>=0.23.0
 sentence-transformers>=2.6.1         # local embeddings
 faiss-cpu>=1.8
-pymupdf==1.24.1                      # (= fitz) for PDF parsing
 tqdm                                 # progress bars
 
