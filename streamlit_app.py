@@ -11,6 +11,8 @@ with st.expander("Instructions"):
     3. The model will extract relevant parts and answer.
     """)
 
+text = ""  # ✅ Define it at the top to avoid NameError
+
 input_mode = st.radio("Select input type", ["📄 Upload PDF", "📝 Paste text"])
 
 if input_mode == "📄 Upload PDF":
@@ -25,13 +27,11 @@ if input_mode == "📄 Upload PDF":
         except Exception as e:
             st.error(f"PDF loading failed: {e}")
             st.stop()
+
 elif input_mode == "📝 Paste text":
     text = st.text_area("Paste the research paper text here")
 
-else:
-    text = ""
-
-if text:
+if text.strip():  # ✅ Added `.strip()` to prevent false positives from empty strings
     query = st.text_input("Ask a question about the paper:")
     if query:
         with st.spinner("Running QA..."):
