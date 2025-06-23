@@ -1,9 +1,17 @@
-PyMuPDF==1.23.7
-streamlit>=1.33.0
-langchain>=0.2.0
-langchain-community>=0.2.0
-huggingface_hub>=0.23.0
-sentence-transformers>=2.6.1         # local embeddings
-faiss-cpu>=1.8
-tqdm                                 # progress bars
+## Following block of requirements is for Hugging Face transformer
+#PyMuPDF==1.23.7
+#streamlit>=1.33.0
+#langchain>=0.2.0
+#langchain-community>=0.2.0
+#huggingface_hub>=0.23.0
+#sentence-transformers>=2.6.1         # local embeddings
+#faiss-cpu>=1.8
+#tqdm                                 # progress bars
 
+## Following block of requirements is for Research Paper QA App Using LangChain + FAISS + HuggingFace Embeddings + Transformers LLM
+streamlit
+langchain>=0.1.14
+faiss-cpu
+PyPDF2
+transformers
+sentence-transformers
