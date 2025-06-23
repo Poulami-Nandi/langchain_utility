@@ -1,10 +1,12 @@
-from langchain.vectorstores import FAISS
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain_community.embeddings import HuggingFaceEmbeddings
+
 from langchain.chains import RetrievalQA
 from langchain.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.llms import HuggingFacePipeline
 from transformers import pipeline
+
 
 EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 QA_MODEL = "deepset/roberta-base-squad2"
