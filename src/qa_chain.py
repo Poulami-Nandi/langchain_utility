@@ -1,30 +1,34 @@
-from langchain_community.vectorstores import FAISS
+from langchain_community.llms import HuggingFacePipeline
 from langchain_community.embeddings import HuggingFaceEmbeddings
-
+from langchain_community.vectorstores import FAISS
 from langchain.chains import RetrievalQA
-from langchain.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.llms import HuggingFacePipeline
+from langchain.docstore.document import Document
 from transformers import pipeline
+from sentence_transformers import SentenceTransformer
 
+def build_chain(paper_text: str):
+    # Load embedding model
+    embed_model = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
-EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-QA_MODEL = "deepset/roberta-base-squad2"
+    # Split text
+    splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+    splits = splitter.split_documents([Document(page_content=paper_text)])
 
-def build_chain(document_text: str):
-    # Chunk the text
-    splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
-    chunks = splitter.split_text(document_text)
+    # Vector store
+    vectorstore = FAISS.from_documents(splits, embed_model)
 
-    # Embed & store in FAISS
-    embeddings = HuggingFaceEmbeddings(model_name=EMBED_MODEL)
-    db = FAISS.from_texts(chunks, embeddings)
-    retriever = db.as_retriever()
+    # HuggingFace pipeline model
+    pipe = pipeline(
+        "text2text-generation",
+        model="google/flan-t5-base",
+        tokenizer="google/flan-t5-base",
+        max_length=256,
+        do_sample=False,
+    )
 
-    # HuggingFace LLM
-    pipe = pipeline("question-answering", model=QA_MODEL, tokenizer=QA_MODEL)
     llm = HuggingFacePipeline(pipeline=pipe)
 
-    # Chain
-    chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever)
+    # Retrieval QA chain
+    chain = RetrievalQA.from_chain_type(llm=llm, retriever=vectorstore.as_retriever())
     return chain
