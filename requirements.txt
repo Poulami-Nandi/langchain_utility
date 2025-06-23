@@ -10,10 +10,11 @@
 
 ## Following block of requirements is for Research Paper QA App Using LangChain + FAISS + HuggingFace Embeddings + Transformers LLM
 streamlit
-pymupdf
+pandas
 langchain
 langchain-community
+huggingface_hub
 sentence-transformers
 transformers
-torch
 faiss-cpu
+pymupdf
