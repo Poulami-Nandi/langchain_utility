@@ -10,9 +10,9 @@
 
 ## Following block of requirements is for Research Paper QA App Using LangChain + FAISS + HuggingFace Embeddings + Transformers LLM
 streamlit
-langchain>=0.1.14
+langchain
 langchain-community
-faiss-cpu
 sentence-transformers
 transformers
-PyPDF2
+torch
+faiss-cpu
