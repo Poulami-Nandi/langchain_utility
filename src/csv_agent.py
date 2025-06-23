@@ -1,14 +1,14 @@
-from langchain_experimental.agents import create_pandas_dataframe_agent
-from langchain_community.llms import HuggingFaceHub  # or the newer langchain_huggingface version
+import pandas as pd
+from transformers import pipeline
+from langchain.llms import HuggingFacePipeline
 
-def load_llm():
-    return HuggingFaceHub(
-        repo_id="google/flan-t5-large",
-        model_kwargs={"temperature": 0, "max_length": 512}
-    )
+def create_csv_agent(df: pd.DataFrame):
+    pipe = pipeline("text2text-generation", model="google/flan-t5-large", max_length=512)
+    llm = HuggingFacePipeline(pipeline=pipe)
 
-def create_csv_agent(df):
-    llm = load_llm()
-    return create_pandas_dataframe_agent(
-        llm, df, verbose=True, allow_dangerous_code=True
-    )
+    def answer_query(question: str) -> str:
+        context = df.head(5).to_markdown()
+        prompt = f"Answer the question based on this CSV table preview:\n\n{context}\n\nQuestion: {question}"
+        return llm(prompt)
+
+    return answer_query
