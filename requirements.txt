@@ -18,3 +18,4 @@ sentence-transformers
 transformers
 faiss-cpu
 pymupdf
+langchain-experimental>=0.0.20
