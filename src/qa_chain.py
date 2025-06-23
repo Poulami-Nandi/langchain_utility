@@ -21,13 +21,16 @@ def build_chain(paper_text: str):
     retriever = db.as_retriever(search_kwargs={"k": 4})
 
     # 3. Use HuggingFaceHub wrapper (not HuggingFaceEndpoint!)
+    from langchain_community.llms import HuggingFaceHub
+
     llm = HuggingFaceHub(
-        repo_id=CHAT_MODEL_ID,
-        huggingfacehub_api_token=os.environ["HUGGINGFACEHUB_API_TOKEN"],
+        repo_id="HuggingFaceH4/zephyr-7b-beta",  # or another supported repo_id
         model_kwargs={
-            "temperature": 0.1,
-            "max_new_tokens": 512,
-        }
+            "temperature": 0.5,
+            "max_new_tokens": 512
+        },
+        task="text-generation",
+        huggingfacehub_api_token=os.environ["HUGGINGFACEHUB_API_TOKEN"]
     )
 
     # 4. Return the retrieval-augmented QA chain
