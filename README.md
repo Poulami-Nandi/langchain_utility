@@ -1,49 +1,64 @@
-# langchain_utility
-Combination of several LangChain utilities like explaining a research paper
-# 🧑‍🔬 AI Research Paper Explainer
+# 🔍 LangChain Utility – PDF & CSV Agent
 
-**Ask questions about any scientific paper and get concise answers backed by its content.**  
-Built using `LangChain`, `OpenAI`, and `Streamlit`. Perfect for students, researchers, and AI enthusiasts.
-
----
-
-## 🚀 Demo
-
-![demo](docs/demo.gif)
-
-Try the live version → [Streamlit App Link](https://your-streamlit-link-here)
+A unified Streamlit app to **ask questions** from:
+- 📄 Any **PDF research paper** or arXiv article
+- 📊 Any **CSV dataset**
 
 ---
 
-## 📂 Features
+## 🧠 Use Cases
 
-- 🔍 Upload any scientific PDF or give an **arXiv ID/URL**
-- 🧠 Automatically parses and indexes the paper using **chunked embeddings**
-- 💬 Ask natural language questions about the paper
-- 📄 Get grounded answers from the paper's content using **GPT-4o + Retrieval QA**
-- 📚 Supports any academic field (ML, physics, medicine, etc.)
-- 🖼️ Coming soon: math extraction, figure summarization, citation graphs
+- **Research Paper Explainer / ATS**: Upload a paper and ask questions — just like an AI-powered assistant or screening tool.
+- **CSV Analyst**: Upload your dataset and ask any question about its contents in natural language.
+- Perfect for **students, researchers, analysts, and data scientists**.
+
+---
+
+## 🎥 Demo
+
+![demo](docs/demo.gif)  
+**Try it live** → [Streamlit App Link](https://langchainutility-8jjzqtafi8cciy8jhqdjif.streamlit.app/)
+
+---
+
+## 🛠 Features
+
+| PDF Explainer | CSV Analyst |
+|---------------|-------------|
+| Upload or link to arXiv paper | Upload any CSV file |
+| Parses content into chunks | Uses HuggingFace LLM to query data |
+| Embeds chunks & builds FAISS vector store | Converts questions to Pandas queries |
+| Ask questions in plain English | Real-time insights from raw data |
 
 ---
 
 ## 🧱 Tech Stack
 
-- `LangChain` (RetrievalQA, FAISS, OpenAIEmbeddings)
-- `OpenAI` (GPT-4o or GPT-3.5)
-- `FAISS` (semantic search backend)
-- `Streamlit` (interactive web UI)
+- `LangChain` (RetrievalQA, Agents)
+- `HuggingFaceHub` (FLAN-T5)
+- `FAISS` (semantic similarity)
 - `PyMuPDF` (PDF parsing)
-- `arXiv` (fetching papers)
+- `pandas` (data processing)
+- `Streamlit` (UI)
 
 ---
 
-## 💻 How It Works
+## 🚦 How It Works
 
-1. **Upload** a PDF or enter an arXiv link/ID.
-2. **Parse & Chunk** the paper into manageable blocks.
-3. **Embed** each chunk with OpenAI embeddings.
-4. **Store** in FAISS vector DB.
-5. Ask a question → relevant chunks retrieved → LLM answers based on content.
+### PDF Mode
+1. Upload a PDF or enter arXiv ID.
+2. Text is extracted, chunked, and embedded using `OpenAIEmbeddings`.
+3. Stored in FAISS vector index.
+4. A RetrievalQA chain is created.
+5. You ask: *"What are the main findings?"*
+6. It retrieves relevant chunks → summarizes with LLM.
+
+### CSV Mode
+1. Upload any CSV.
+2. Loaded into a Pandas DataFrame.
+3. You ask: *"Which product had highest sales?"*
+4. HuggingFace model + LangChain agent processes and executes code securely.
+5. You get an answer with explanation.
 
 ---
 
@@ -57,81 +72,72 @@ pip install -r requirements.txt
 
 ---
 
-## 🔐 Environment Setup
-
-Make sure your `OPENAI_API_KEY` is available either in:
+## 🔐 Environment Variables
 
 ### `.streamlit/secrets.toml`
 ```toml
-OPENAI_API_KEY = "sk-..."
+HUGGINGFACEHUB_API_TOKEN = "your-huggingface-token"
 ```
 
-or
-
-### `.env`
+Or you can use a `.env` file:
 ```bash
-export OPENAI_API_KEY="sk-..."
+export HUGGINGFACEHUB_API_TOKEN="your-huggingface-token"
 ```
+
+No OpenAI key needed – it's 100% free using HuggingFace.
 
 ---
 
 ## 🧪 Run Locally
 
 ```bash
-streamlit run app.py
+streamlit run streamlit_app.py
 ```
 
-You’ll be able to upload PDFs or paste an arXiv URL and begin asking questions instantly.
+You'll be able to choose between:
+- 🤖 Ask your research paper
+- 📊 Ask your CSV
 
 ---
 
-## 🏗 Project Structure
+## 📁 Project Structure
 
 ```
-paper-explainer/
-├── app.py
+langchain_utility/
+├── streamlit_app.py
 ├── requirements.txt
 ├── .streamlit/
 │   └── secrets.toml
 ├── src/
-│   ├── loader.py
-│   ├── qa_chain.py
-│   └── utils.py
+│   ├── loader.py              # PDF/arXiv text loader
+│   ├── qa_chain.py            # Builds Retrieval QA chain
+│   └── csv_agent.py           # CSV agent using HF model
 └── sample_papers/
     └── attention_is_all_you_need.pdf
 ```
 
 ---
 
-## 📈 Coming Soon
+## 💡 Example Questions
 
-| Feature | Description |
-|---------|-------------|
-| 🎯 Section-wise summarization | Auto-summarize Abstract / Methods / Results |
-| 🧮 LaTeX math parsing         | Render & extract equations from papers       |
-| 📊 Citation graph            | Show related works and references            |
-| 📸 Figure captioning         | Use OCR / object detection to describe diagrams |
-| 🤖 LLM self-evaluation       | Let the LLM judge its own confidence level   |
+**PDF Mode**
+- "What are the core contributions of this paper?"
+- "Which datasets were used in experiments?"
+- "Summarize the methodology."
 
----
-
-## 📃 Example Papers
-
-Start with any of these:
-
-- [`attention_is_all_you_need.pdf`](sample_papers/attention_is_all_you_need.pdf)
-- `arxiv.org/abs/1706.03762`
+**CSV Mode**
+- "What is the average sales by region?"
+- "Show the top 5 products by revenue."
+- "Which year had the highest growth?"
 
 ---
 
 ## 🌍 Deployment on Streamlit Cloud
 
-1. Push repo to GitHub
-2. Go to [streamlit.io/cloud](https://streamlit.io/cloud) and connect your GitHub
-3. Select `app.py` as entry point
-4. Add your API key in **Secrets** as `OPENAI_API_KEY`
-
-App goes live in ~30 seconds 🎉
+1. Push your repo to GitHub
+2. Connect to [streamlit.io/cloud](https://streamlit.io/cloud)
+3. Set `streamlit_app.py` as entrypoint
+4. Add `HUGGINGFACEHUB_API_TOKEN` in app secrets
 
 ---
 
