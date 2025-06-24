@@ -143,7 +143,7 @@ langchain_utility/
 
 ## 🙋 About
 
-**Author**: [Dr. Poulami Nandi](https://www.linkedin.com/in/poulami-nandi/)  
+**Author**: [Dr. Poulami Nandi](https://www.linkedin.com/in/poulami-nandi-a8a12917b/)  
 <img src="https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/own/own_image.jpg" alt="Profile" width="150"/>  
 Physicist · Quant Researcher · Data Scientist  
 [University of Pennsylvania](https://live-sas-physics.pantheon.sas.upenn.edu/people/poulami-nandi) | [IIT Kanpur](https://www.iitk.ac.in/) | [TU Wien](http://www.itp.tuwien.ac.at/CPT/index.htm?date=201838&cats=xbrbknmztwd)
